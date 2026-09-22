@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>汕头 + 南澳岛 亲子行程 · 2026.10.06-08（国庆尾巴·白天赶海版）</title>
+<style>
+  :root{
+    --bg:#f4f6f8; --card:#fff; --ink:#1f2937; --ink2:#5b6672; --line:#e6eaee;
+    --brand:#0e8a8a; --brand-l:#e3f4f4; --warn:#e0574b; --warn-l:#fdeceb;
+    --sun:#e08b3a; --sun-l:#fdf1e3; --rain:#4a7fb5; --rain-l:#e9f1f9;
+    --ok:#2f9e6e; --ok-l:#e7f5ee; --gold:#c98a00; --gold-l:#fdf6e0;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{background:var(--bg);color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Helvetica Neue",Arial,sans-serif;
+    font-size:15px;line-height:1.6;padding-bottom:40px}
+  .wrap{max-width:720px;margin:0 auto;padding:0 14px}
+
+  header{background:linear-gradient(135deg,#b02b1e,#d6422f 55%,#e8763f);color:#fff;padding:22px 0 18px;margin-bottom:12px}
+  header h1{font-size:20px;font-weight:700;letter-spacing:.5px}
+  header .sub{font-size:13px;opacity:.95;margin-top:6px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .chip{background:rgba(255,255,255,.18);border-radius:20px;padding:4px 11px;font-size:12px}
+  .chip.hot{background:#ffd76a;color:#7a4a00;font-weight:700}
+
+  .switch-bar{position:sticky;top:0;z-index:20;background:var(--bg);padding:10px 0 10px}
+  .switch{display:flex;background:#e9edf1;border-radius:12px;padding:3px;gap:3px}
+  .switch button{flex:1;border:0;background:transparent;border-radius:10px;padding:9px 2px;
+    font-size:13px;font-weight:600;color:var(--ink2);cursor:pointer;font-family:inherit}
+  .switch button.on{background:#fff;color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.09)}
+  .switch button.on[data-mode="sun"]{color:var(--sun)}
+  .switch button.on[data-mode="rain"]{color:var(--rain)}
+  .switch button.on[data-days="2"]{color:var(--warn)}
+  .switch button.on[data-days="3"]{color:var(--brand)}
+  .switch button.on[data-days="4"]{color:var(--gold)}
+  .sw-label{font-size:12px;color:var(--ink2);margin:10px 0 4px;font-weight:600}
+  .mode-tip{font-size:12.5px;color:var(--ink2);margin:0 0 12px}
+
+  .card{background:var(--card);border-radius:14px;padding:16px;margin-bottom:12px;box-shadow:0 1px 3px rgba(16,32,48,.06)}
+  .card h2{font-size:16px;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+  .card h2 .dot{width:4px;height:15px;background:var(--brand);border-radius:2px}
+  .card h3{font-size:14px;font-weight:700;margin:14px 0 8px}
+
+  .alert{background:var(--gold-l);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;padding:12px 14px;margin-bottom:12px}
+  .alert .t{font-weight:700;font-size:14.5px;color:#8a5f00}
+  .alert .d{font-size:13px;color:#6b5200;margin-top:4px}
+
+  .todo{border-left:3px solid var(--warn);background:var(--warn-l);border-radius:0 10px 10px 0;padding:11px 13px;margin-bottom:9px}
+  .todo.mid{border-color:var(--sun);background:var(--sun-l)}
+  .todo.low{border-color:var(--brand);background:var(--brand-l)}
+  .todo .t{font-weight:700;font-size:14px}
+  .todo .d{font-size:13px;color:var(--ink2);margin-top:3px}
+  .badge{display:inline-block;background:var(--warn);color:#fff;border-radius:5px;padding:1px 7px;font-size:12px;font-weight:700;margin-right:6px}
+  .todo.mid .badge{background:var(--sun)} .todo.low .badge{background:var(--brand)}
+
+  table{width:100%;border-collapse:collapse;font-size:13.5px}
+  th,td{padding:9px 8px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--ink2);font-weight:600;font-size:12.5px;background:#fafbfc}
+  td.time{white-space:nowrap;font-variant-numeric:tabular-nums;color:var(--brand);font-weight:600;width:74px}
+  tr:last-child td{border-bottom:0}
+  .tag{display:inline-block;font-size:11px;border-radius:4px;padding:1px 6px;margin-right:4px;font-weight:600}
+  .tag.eat{background:var(--sun-l);color:#a85f13}
+  .tag.kid{background:var(--ok-l);color:#1d7048}
+  .tag.drive{background:#eef1f4;color:#5b6672}
+  .tag.must{background:var(--warn-l);color:#b5342a}
+  .tag.sea{background:var(--brand-l);color:#0b6b6b}
+
+  .hotel{border:1px solid var(--line);border-radius:11px;padding:13px;margin-bottom:10px}
+  .hotel:last-child{margin-bottom:0}
+  .hotel .name{font-weight:700;font-size:15px}
+  .hotel .price{float:right;color:var(--warn);font-weight:700;font-size:14px}
+  .hotel .meta{font-size:12.5px;color:var(--ink2);margin-top:5px}
+  .hotel .why{font-size:13px;margin-top:7px;background:#fafbfc;border-radius:7px;padding:7px 9px;color:var(--ink2)}
+  .pick{display:inline-block;background:var(--ok);color:#fff;font-size:11px;border-radius:4px;padding:1px 6px;font-weight:700;margin-left:6px;vertical-align:1px}
+
+  .note{background:var(--brand-l);border-radius:9px;padding:10px 12px;font-size:13px;color:#0b6b6b;margin-top:10px}
+  .note.warn{background:var(--warn-l);color:#a8332a}
+  .note.gold{background:var(--gold-l);color:#7a5200}
+  .note b{font-weight:700}
+
+  ul.pack{list-style:none;font-size:13.5px}
+  ul.pack li{padding:6px 0 6px 20px;position:relative;border-bottom:1px dashed var(--line)}
+  ul.pack li:last-child{border-bottom:0}
+  ul.pack li:before{content:"";position:absolute;left:2px;top:13px;width:6px;height:6px;border-radius:50%;background:var(--brand)}
+  .cols{display:flex;gap:10px} .cols>div{flex:1}
+
+  .tide{display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,#e3f4f4,#fdf6e0);
+    border-radius:10px;padding:11px 13px;margin-bottom:8px}
+  .tide .big{font-size:17px;font-weight:700;color:#0b6e6e;font-variant-numeric:tabular-nums}
+  .tide .lbl{font-size:12.5px;color:var(--ink2)}
+  .tide .score{margin-left:auto;border-radius:20px;padding:3px 10px;font-size:12px;font-weight:700;color:#fff}
+  .score.mid{background:var(--sun)} .score.good{background:var(--ok)} .score.low{background:#98a2ad}
+
+  .diff{width:100%;border-collapse:collapse;font-size:13.5px}
+  .diff td{padding:10px 8px;vertical-align:top;border-bottom:1px solid var(--line)}
+  .diff tr:last-child td{border-bottom:0}
+  .diff .lbl{width:96px;font-weight:700;color:var(--ink2);font-size:12.5px}
+
+  body[data-mode="sun"] .rain-only{display:none}
+  body[data-mode="rain"] .sun-only{display:none}
+  body[data-days="2"] .d3-only,body[data-days="2"] .d4-only{display:none}
+  body[data-days="3"] .d2-only,body[data-days="3"] .d4-only{display:none}
+  body[data-days="4"] .d2-only,body[data-days="4"] .d3-only{display:none}
+
+  .mode-label{display:inline-block;font-size:12.5px;font-weight:700;border-radius:6px;padding:3px 10px;margin-bottom:10px}
+  .mode-label.sun{background:var(--sun-l);color:#a85f13}
+  .mode-label.rain{background:var(--rain-l);color:#2f5e8a}
+
+  footer{text-align:center;font-size:12px;color:#98a2ad;padding:18px 0 0}
+</style>
+</head>
+<body data-mode="sun" data-days="3">
+
+<header>
+  <div class="wrap">
+    <h1>南澳岛 → 汕头 亲子游</h1>
+    <div class="sub" id="subLine">2026.10.06 周二 — 10.08 周四（3 天）｜ 东莞凤岗出发 ｜ 两大一小（4岁11个月）</div>
+    <div class="chips">
+      <span class="chip hot">🎌 国庆假期尾巴</span>
+      <span class="chip">先上岛·后进城</span>
+      <span class="chip">高铁+租车</span>
+      <span class="chip">白天干潮·不摸黑</span>
+      <span class="chip">住青澳湾→小公园</span>
+      <span class="chip" id="leaveChip">需请 1 天假</span>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="alert">
+    <div class="t">🎌 假期前提：10/1（周四）— 10/7（周三）放假 7 天，10/10（周六）上班</div>
+    <div class="d">10/6 是国庆假期<b>第 6 天（倒数第二天）</b>，10/7 是最后一天，<b>10/8 周四已恢复正常上班</b>。所以只要行程排到 10/8，就必须请假。<br>
+    国庆高速<b>七座以下免费</b>（10/1–10/7），但你们是高铁+落地租车，这项用不上；<b>南澳大桥过桥费 ¥96 照收</b>，不免费。<br>
+    国庆是全年最猛的长假，<b>高铁票难度、房价上浮（30–80%）都处在全年最高档</b>。</div>
+  </div>
+
+  <div class="switch-bar">
+    <div class="sw-label">行程档位（<b style="color:#e0574b">关键是：10/7 下午才有像样的赶海，行程至少要覆盖到 10/7 下午</b>）</div>
+    <div class="switch">
+      <button data-days="2" onclick="setDays('2')">2 天 · 不请假</button>
+      <button data-days="3" class="on" onclick="setDays('3')">3 天 · 请 1 天</button>
+      <button data-days="4" onclick="setDays('4')">4 天 · 请 2 天</button>
+    </div>
+    <div class="sw-label">天气</div>
+    <div class="switch">
+      <button data-mode="sun" class="on" onclick="setMode('sun')">☀️ 晴天</button>
+      <button data-mode="rain" onclick="setMode('rain')">🌧️ 雨天</button>
+    </div>
+  </div>
+  <div class="mode-tip" id="modeTip">当前：<b>3 天版 + 晴天</b>。晴/雨两套都是完整时刻表，切换即可。</div>
+
+  <!-- 关键前提 -->
+  <div class="card">
+    <h2><span class="dot"></span>本次行程的 5 个关键前提（先看这个）</h2>
+    <table class="diff">
+      <tr>
+        <td class="lbl">潮汐档位</td>
+        <td><b>中等潮，不是大潮。</b><br>
+        <b>10/6 = 农历八月廿六</b>，处在下弦小潮末尾、正向下一轮大潮（九月初一约 10/10）过渡，潮差约 <b>1.2–1.6m</b>。滩涂会露出来，但<b>不会大面积裸露</b>。赶海评分 <b>62–72</b>。<b>赶海能做，但别抱「爆桶」的期待</b> —— 4 岁娃的乐趣在「挖到」本身。</td>
+      </tr>
+      <tr>
+        <td class="lbl">干潮时刻</td>
+        <td><b style="color:#1d7048">干潮落在下午、全程天亮 —— 这是本次最大的利好。</b><br>
+        <b>10/7 干潮推算约 15:38</b>，10 月上旬汕头日落约 <b>18:12</b>，赶海全程在日光下完成，<b>不用摸黑，对 4 岁娃更安全也更从容</b>。</td>
+      </tr>
+      <tr>
+        <td class="lbl">到达日赶海</td>
+        <td><b style="color:#a8332a">10/6 当天基本赶不上。</b>10/6 下午干潮推算约 <b>14:48</b>，而你们 12:22 才到汕头、约 15:10 才到民宿，<b>只能踩到涨潮的尾巴</b>。<br>→ 所以 Day 1 改为<b>青澳湾沙滩热身（不赶海）</b>，把正式赶海放在 <b>10/7 下午</b>。</td>
+      </tr>
+      <tr>
+        <td class="lbl">返程时机</td>
+        <td><b style="color:#1d7048">反向错峰，这是 10/6 出发最大的优势。</b>10/6 出行时前半程返程高峰已过去一半；若 <b>10/8 返程（假期后首日）</b>，高铁票比 10/7 好抢得多，<b>10/7 晚的房价也开始回落</b>（10/7 是假期最后一晚，多数房型从这天开始降价）。<br>反过来：<b style="color:#a8332a">10/7 晚上返程 = 撞上全国返程最高峰</b>，票最难抢。</td>
+      </tr>
+      <tr>
+        <td class="lbl">天气与月相</td>
+        <td>八月廿六是<b>残月</b>，凌晨才升起，<b>晚上没有月亮可看</b>，夜间活动改为<b>看灯塔夜景 / 数星星</b>。<br>气温 10 月上旬南澳约 <b>23–29℃</b>，水温约 <b>25℃</b>，下水没问题，但<b>早晚要加一件薄外套</b>。<b>10 月南海台风仍活跃</b>，出发前一周开始每天看预警。</td>
+      </tr>
+    </table>
+    <div class="note gold"><b>一句话结论：潮型只是中等，但干潮在下午、全程天亮，带 4 岁娃其实是很舒服的一档。</b>前提是行程要覆盖到 10/7 下午 —— 这也是我把 3 天版设为默认推荐的原因。</div>
+  </div>
+
+  <!-- 赶海专题 -->
+  <div class="card">
+    <h2><span class="dot"></span>赶海专题：中潮期，靠干潮时刻取胜</h2>
+    <div class="note warn rain-only"><b>⚠️ 雨天模式：本专题全部作废。</b>雨中滩涂湿滑、礁石有青苔、涨潮判断失准，<b>本次赶海一律取消</b>，不设「小雨可以试试」的中间档。原赶海时段已重新排入下方雨天时刻表（总兵府 / 宋井 / 金银岛 / 后宅市场 / 民宿室内）。</div>
+    <div class="note gold"><b>本档潮汐的性质：</b>10/6 = 八月廿六、10/7 = 八月廿七、10/8 = 八月廿八。<b>八月为小月（29 天）</b>，九月初一（朔）约在 <b>10/10</b>，下一轮大潮要等到 10/11–10/13。<br>
+    也就是说：<b>这次卡在「小潮刚过、大潮未到」的中潮期</b>。潮差约 1.2–1.6m，低潮潮高推算约 0.7–1.0m —— 滩涂会露出来，但<b>裸露面积有限</b>。能挖到花蛤、小螃蟹，<b>收获量按「够娃开心」预期，不要按「爆桶」预期</b>。</div>
+
+    <h3>南澳岛潮时（农历推算值，需复核）</h3>
+    <div class="tide">
+      <div><div class="big">10/6</div><div class="lbl">八月廿六 · 中潮</div></div>
+      <div style="flex:1"><div class="big">干潮 ≈ 14:48</div><div class="lbl">你们 15:10 才到民宿，赶不上</div></div>
+      <div class="score low">62 分</div>
+    </div>
+    <div class="tide">
+      <div><div class="big">10/7</div><div class="lbl">八月廿七 · 中潮</div></div>
+      <div style="flex:1"><div class="big">13:40 → 16:00</div><div class="lbl">赶海窗口（干潮 ≈ 15:38），<b>全程天亮</b></div></div>
+      <div class="score good">68 分</div>
+    </div>
+    <div class="tide">
+      <div><div class="big">10/8</div><div class="lbl">八月廿八 · 中潮</div></div>
+      <div style="flex:1"><div class="big">14:30 → 17:00</div><div class="lbl">赶海窗口（干潮 ≈ 16:28），撤时距日落约 70 min</div></div>
+      <div class="score mid">71 分</div>
+    </div>
+    <div class="tide">
+      <div><div class="big">10/9</div><div class="lbl">八月廿九 · 中潮</div></div>
+      <div style="flex:1"><div class="big">干潮 ≈ 17:18</div><div class="lbl">撤场时已过日落（18:12），<b>带娃不推荐</b></div></div>
+      <div class="score mid">65 分</div>
+    </div>
+    <div class="note warn"><b>这是农历推算值，误差可能达 ±60–90 分钟</b>（连续推算 10 天的累积误差 + 南澳本身是不规则半日潮，一天两次低潮不等高）。<br>
+    <b>10/1 后必须用「潮汐表精灵」小程序定位南澳岛复核</b>，以实际干潮时刻倒推出发时间。<br>
+    <b>操作口诀不变：干潮前 2 小时到，干潮后 1 小时内撤。</b>一次低潮只有半天，一天两次里要挑下午那次。</div>
+
+    <h3>带 4 岁娃选哪个滩</h3>
+    <table>
+      <tr><th>点位</th><th>特点</th><th>适配</th></tr>
+      <tr><td><b>竹栖肚湾</b><br><span style="font-size:12px;color:#5b6672">青澳湾内</span></td><td>沙细水清、退潮后滩涂平缓<b>无礁石</b>、有冲脚处。主打贝壳、海螺、小螃蟹</td><td><span class="tag kid">带娃首选</span>零门槛</td></tr>
+      <tr><td><b>青澳湾沙滩</b></td><td>民宿门口。地势平缓无尖锐礁石，退潮可挖花蛤白贝；海货偏少，属轻度体验</td><td><span class="tag kid">最省事</span>Day1 热身</td></tr>
+      <tr><td><b>深澳白沙湾</b></td><td>泥沙质滩涂开阔，地势平缓。<b>中潮期滩涂露得少，想多挖就来这里</b></td><td><span class="tag kid">收获多</span>需开车</td></tr>
+      <tr><td style="color:#a8332a">走马埔村 / 金银岛</td><td>礁石区，螃蟹海胆多，但<b>青苔湿滑易划伤</b></td><td><span class="tag must">4 岁娃不建议</span></td></tr>
+    </table>
+    <div class="note"><b>中潮期的两个补救技巧：</b>① 潮差小 = 滩涂露得少，优先选<b>坡度最平缓的竹栖肚湾</b>，别去陡滩；② 收获不够就<b>往深澳白沙湾跑一趟</b>（车程 20 min），泥沙滩在低潮高 0.8m 时仍能挖到花蛤。<br><b>心态放平：4 岁娃的乐趣在「挖到」本身，不在桶里有多少。</b></div>
+
+    <h3>赶海装备（普通沙滩玩具不够用）</h3>
+    <div class="cols">
+      <div>
+        <ul class="pack">
+          <li><b>防滑溯溪鞋 / 胶鞋</b>（洞洞鞋会陷泥打滑）</li>
+          <li>加厚手套（翻石头防划）</li>
+          <li>小铲子 + 小耙子</li>
+          <li><b>夹子</b>（夹螃蟹、海胆防扎手）</li>
+        </ul>
+      </div>
+      <div>
+        <ul class="pack">
+          <li>水桶 / 网兜</li>
+          <li>头灯（本次白天场可不带，留着备用）</li>
+          <li>整套干衣 + 大浴巾（必湿）</li>
+          <li>防晒帽 + 儿童防晒霜（10 月紫外线仍强）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note"><b>渔获怎么吃：</b>后宅镇龙滨路美食街的排档大多提供<b>代加工</b>（少量加工费），或带回民宿让老板处理。<b>红色爱杰蟹有毒不可食用</b>，不认识的一律不带走。</div>
+  </div>
+
+  <!-- 关键待办 -->
+  <div class="card">
+    <h2><span class="dot"></span>关键待办（<b style="color:#e0574b">今天就得动第一项</b>）</h2>
+    <div class="todo">
+      <div class="t"><span class="badge">今天 9/22</span>抢高铁票（深圳北 → 汕头）</div>
+      <div class="d">铁路预售 15 天（含当日），<b>10/6 的车票今天就开售</b>。国庆是全国最难抢的档，<b>建议 8:00–9:30 段直达优先</b>（早到 = 岛上游玩时间更长），次选 C7204 深圳北 10:04 → 汕头 12:22（¥148）。<br>
+      回程同步买：<b class="d2-only" style="color:#a8332a">10/7 晚（返程最高峰，务必第一时间抢）</b><b class="d3-only">10/8 下午（假期后首日，相对好抢 —— 这是 3 天版的优势之一）</b><b class="d4-only">10/9 下午</b>。<b>小孩 1.2m 以下免票不占座。</b></div>
+    </div>
+    <div class="todo">
+      <div class="t"><span class="badge">9/29 起</span>「南澳畅行」小程序预约入岛</div>
+      <div class="d">提前 7 天开放 → <b>9/29 当天即可约 10/6</b>。国庆属法定节假日，<b>几乎必然强制预约</b>。锁定 <b>13:00–17:00</b> 入岛时段，填租车车牌。预约成功赠总兵府、宋井、金银岛门票各 1 张。<br><b>国庆名额是全国最紧张的一档，9/29 零点就去抢。</b></div>
+    </div>
+    <div class="todo mid">
+      <div class="t"><span class="badge">尽快</span>定档位 → 请假（<b class="d2-only">不用请假</b><b class="d3-only">10/8 周四 1 天</b><b class="d4-only">10/8、10/9 两天</b>）</div>
+      <div class="d">这一项决定后面所有预订。<b>3 天版只需请 1 天（10/8 周四）</b>，性价比最高；<b>2 天版虽然不用请假，但要撞 10/7 全国返程最高峰</b>，且汕头城区只剩一顿晚饭。</div>
+    </div>
+    <div class="todo mid">
+      <div class="t"><span class="badge">尽快</span>订车 + 订房（国庆上浮最猛）</div>
+      <div class="d">一嗨「汕头高铁站店」站内取还，备注<b>儿童安全座椅</b>。青澳湾一线海景房国庆可能上浮至 <b>¥900–1500</b>，<b>能订就别等</b>，只选免费取消房型。技巧：<b>10/7 那晚可尝试下单后再看降价，多数房型从这天开始回落。</b></div>
+    </div>
+    <div class="todo low">
+      <div class="t"><span class="badge">10/1 后</span>复核潮汐 · <span class="badge" style="margin-left:4px">10/4</span>复核天气</div>
+      <div class="d">潮汐用「潮汐表精灵」小程序定位南澳岛，<b>确认 10/7 下午干潮的精确时刻</b>，倒推赶海出发时间 —— 这一项直接决定 Day 2 的时间表能不能成立。<br>天气若台风黄色预警或大桥 10 级风封桥，切雨天方案（10 月南海台风仍活跃，不能掉以轻心）。</div>
+    </div>
+  </div>
+
+  <!-- 三档对比 -->
+  <div class="card">
+    <h2><span class="dot"></span>2 天 / 3 天 / 4 天，怎么选</h2>
+    <table>
+      <tr><th>维度</th><th>⚡ 2 天（不请假）</th><th>🏖 3 天（请 1 天）</th><th>🌊 4 天（请 2 天）</th></tr>
+      <tr><td>日期</td><td>10/6 – 10/7</td><td>10/6 – 10/8</td><td>10/6 – 10/9</td></tr>
+      <tr><td>请假</td><td><b style="color:#1d7048">0 天</b></td><td>10/8 周四 <b>1 天</b></td><td>10/8、10/9 <b>2 天</b></td></tr>
+      <tr><td>赶海</td><td>1 次（10/7 下午）</td><td>1 次（10/7 下午）</td><td><b>2 次</b>（10/7、10/8 两个下午）</td></tr>
+      <tr><td>环岛</td><td>西线半程</td><td>西线半程</td><td><b>东线完整</b>：三囱崖、风车场、彩虹海</td></tr>
+      <tr><td>汕头城区</td><td style="color:#a8332a"><b>仅 1 顿晚餐</b></td><td><b>约 1 天</b>（10/7 夜逛 + 10/8 上午）</td><td><b style="color:#1d7048">1.5 天</b>（10/8 下午+夜 + 10/9 上午）</td></tr>
+      <tr><td>返程高铁</td><td style="color:#a8332a"><b>10/7 晚 · 全国最高峰</b></td><td style="color:#1d7048"><b>10/8 下午 · 明显好抢</b></td><td>10/9 下午 · 最好抢</td></tr>
+      <tr><td>强度</td><td style="color:#a8332a"><b>高</b>，Day2 连轴到深夜</td><td><b>适中</b></td><td><b>松弛</b>，娃有午睡</td></tr>
+      <tr><td>到凤岗</td><td>10/7 约 23:00</td><td>10/8 约 17:00</td><td>10/9 约 17:00</td></tr>
+      <tr><td>预算（国庆价）</td><td>¥2,900 – 4,200</td><td><b>¥4,150 – 6,060</b></td><td>约 <b>+¥1,300–1,800</b></td></tr>
+    </table>
+    <div class="note"><b>我的判断：默认选 3 天版。</b><br>
+      · <b>2 天版不推荐</b> —— 不用请假是唯一优点，代价是：汕头城区只剩一顿饭（小公园、牛肉火锅、夜粥、生腌几乎全砍）、10/7 晚上撞全国返程最高峰、娃连轴到 23:00 才到家。<b>除非假期额度实在挤不出来，否则别选。</b><br>
+      · <b>3 天版是甜点</b> —— 只请 1 天，就换到「10/7 下午天亮赶海 + 汕头完整一夜一上午 + 10/8 错峰返程」，三件事同时成立。<br>
+      · <b>4 天版</b>留给「想赶第二次海 / 想让娃在岛上彻底松一天 / 想把汕头 1.5 天吃满」的情况。多 1 天假 + 约 ¥1,300–1,800。</div>
+  </div>
+
+  <!-- 住宿 -->
+  <div class="card">
+    <h2><span class="dot"></span>住宿（舒适型，国庆价）</h2>
+    <div class="hotel">
+      <div class="name">遇海岸海景民宿（南澳青澳湾店）<span class="pick d2-only">10/6 住</span><span class="pick d3-only">10/6 住</span><span class="pick d4-only">10/6、10/7 住</span><span class="price">约 ¥700–1400/晚</span></div>
+      <div class="meta">青澳湾管委海湾路 11 号海上东方广场 ｜ 携程 4.7</div>
+      <div class="why">落地窗直面海，<b>免费水上乐园 + 儿童俱乐部</b>（雨天关键底牌），前台送挖沙工具；距青澳湾沙滩 200m、北回归线广场 370m，楼下 KFC、罗森、美食街。<b>竹栖肚湾赶海点也在这片。</b></div>
+    </div>
+    <div class="hotel">
+      <div class="name">黄金海岸·淋汐美宿（青澳湾店）<span class="price">约 ¥600–1100/晚</span></div>
+      <div class="meta">青澳湾金滩路 ｜ 携程 4.1 ｜ 备选</div>
+      <div class="why">距沙滩 &lt;100m，4 米大榻榻米（娃可以打滚），大露台看日出，露台可晾晒赶海湿衣。</div>
+    </div>
+    <div class="hotel">
+      <div class="name">汕头 DIOTEL 皇后酒店<span class="pick d3-only">10/7 住</span><span class="pick d4-only">10/8 住</span><span class="price">约 ¥650–1000</span></div>
+      <div class="meta">金平区安平路 13 号 ｜ 携程 4.9</div>
+      <div class="why">小公园骑楼核心、正对中山纪念亭，下楼就是老字号。百年骑楼改造、管家服务、<b>免费汕头站接/送站</b>（提前 1 天预约）、双层隔音玻璃。<b>2 天版不住这里。</b></div>
+    </div>
+    <div class="hotel">
+      <div class="name">熙江假日酒店（小公园店）<span class="price">约 ¥300–500</span></div>
+      <div class="meta">金平区护堤路 10 号 ｜ 携程 4.4 ｜ 备选</div>
+      <div class="why">2021 年开业，步行 5 分钟到小公园，楼下 100m 是杏花吴记牛肉火锅，含双早、免费停车。</div>
+    </div>
+    <div class="note gold"><b>国庆订房的两个技巧：</b>① <b>只订免费取消房型</b>，10/4 复核天气后还有调整余地；② <b>10/7 那晚是假期最后一晚，很多房型会回落</b>，可以先锁 10/6，10/7 单独盯着降价再补订（同店连住可致电前台合并）。</div>
+  </div>
+
+  <!-- 雨天总原则 -->
+  <div class="card rain-only">
+    <h2><span class="dot"></span>雨天方案总原则（先看这个）</h2>
+    <div class="note"><b>① 安全红线：雨天一律不赶海。</b>滩涂湿滑、礁石有青苔，雨中涨潮判断失准，4 岁娃不接受这个风险。原赶海时段全部改为<b>室内 / 有顶棚项目</b>。</div>
+    <div class="note"><b>② 岛上的雨天底牌有三张：</b><br>
+      · <b>总兵府 + 宋井 + 金银岛</b> —— 「南澳畅行」预约赠票，主打室内展厅 / 井亭 / 庙宇，是雨天唯一成体系的景点组合。<br>
+      · <b>民宿儿童俱乐部 + 水上乐园</b> —— 遇海岸民宿自带，娃的雨天放电主场。<br>
+      · <b>后宅镇龙滨路海鲜市场</b> —— 有顶棚，逛吃 + 买干货，雨天照常。</div>
+    <div class="note"><b>③ 城区的雨天底牌：</b>潮汕历史文化博览中心（室内免费需预约）、汕头市博物馆、万象城 / 合胜百货。<b>餐饮几乎不受影响</b>——牛肉火锅、生腌、夜粥、粿条汤全是室内。</div>
+    <div class="note warn"><b>④ 唯一会推翻全盘的变量：台风。</b>大桥遇 <b>10 级风即封桥</b>，<b>10 月南海台风仍活跃，不能掉以轻心</b>。判断点在 <b>10/5 晚 – 10/6 早</b>，届时若台风黄色预警或封桥，Day 1 直接切「封桥兜底表」（见下）。</div>
+  </div>
+
+  <!-- Day 1 -->
+  <div class="card">
+    <h2><span class="dot"></span>Day 1 · 10/6 周二（八月廿六）｜凤岗 → 直奔南澳（三档同表）</h2>
+
+    <div class="mode-label sun">☀️ 晴天 · 完整时刻表</div>
+    <table class="sun-only">
+      <tr><th>时间</th><th>安排</th></tr>
+      <tr><td class="time">06:30</td><td><span class="tag drive">出发</span>凤岗 → 深圳北（约 50 min）</td></tr>
+      <tr><td class="time">10:04</td><td><span class="tag must">高铁</span>C7204 深圳北 → 汕头（2h18m，¥148）。<b>能抢到 8:00–9:30 段直达就抢</b>，早 1 小时到 = 岛上多 1 小时</td></tr>
+      <tr><td class="time">12:22</td><td>到汕头站，站内取车（一嗨），装安全座椅</td></tr>
+      <tr><td class="time">12:50</td><td><span class="tag eat">午餐</span>汕头站附近快速解决（牛肉丸粿条），<b>控制在 40 分钟内</b></td></tr>
+      <tr><td class="time">13:40</td><td><span class="tag drive">上岛</span>汕头 → 南澳大桥（约 50–70 min），走预约时段 13:00–17:00，过桥费 ¥96</td></tr>
+      <tr><td class="time">14:35</td><td>进岛第一站：<b>长山尾灯塔</b>（朱红塔 + 南澳大桥同框，停 15 min）</td></tr>
+      <tr><td class="time">15:10</td><td>到青澳湾民宿放行李、换玩水装备</td></tr>
+      <tr><td class="time">15:40</td><td><span class="tag kid">热身</span><b>青澳湾沙滩挖沙 + 浅滩踩水</b>。<b>今天不赶海</b> —— 14:48 的干潮已过，此刻在涨潮，滩涂正在缩</td></tr>
+      <tr><td class="time">17:30</td><td>回房冲洗换衣。<b>10 月傍晚起风凉，给娃加薄外套</b></td></tr>
+      <tr><td class="time">18:15</td><td><span class="tag eat">晚餐</span>青澳湾海鲜排档。必点南澳紫菜炒饭、白灼生蚝、海鲜砂锅粥</td></tr>
+      <tr><td class="time">19:30</td><td><span class="tag kid">夜场</span>北回归线广场散步 / 阳台看灯塔夜景。<b>八月廿六无月亮，改为数星星</b></td></tr>
+      <tr><td class="time">20:30</td><td>哄娃睡 —— 明天的赶海是重头戏，务必睡足</td></tr>
+    </table>
+
+    <div class="mode-label rain">🌧️ 雨天 · 完整时刻表（沙滩取消，改室内线）</div>
+    <table class="rain-only">
+      <tr><th>时间</th><th>安排</th></tr>
+      <tr><td class="time">06:20</td><td><span class="tag drive">出发</span>凤岗 → 深圳北。<b>雨天多留 10–15 min</b>，广深沿江高速雨天易缓行</td></tr>
+      <tr><td class="time">10:04</td><td><span class="tag must">高铁</span>C7204 深圳北 → 汕头（2h18m，¥148）。天气不影响高铁</td></tr>
+      <tr><td class="time">12:22</td><td><b>决策点</b>：到汕头站取车时先查「南澳畅行」小程序 + 台风预警，确认<b>大桥未封</b>再上岛</td></tr>
+      <tr><td class="time">12:50</td><td><span class="tag eat">午餐</span>汕头站附近牛肉丸粿条（室内，40 min）</td></tr>
+      <tr><td class="time">13:40</td><td><span class="tag drive">上岛</span>雨天桥面湿滑、限速 60 且抓地差，<b>车程按 70–90 min 算</b>。过桥费 ¥96 不变</td></tr>
+      <tr><td class="time">15:10</td><td>到青澳湾民宿，行李放房、换干衣，娃先去<b>儿童俱乐部</b>缓冲</td></tr>
+      <tr><td class="time">16:00</td><td><span class="tag must">室内</span><b>南澳总兵府</b>（预约赠票）。展馆 + 古榕 + 招兵树，室内为主，约 45 min</td></tr>
+      <tr><td class="time">17:00</td><td><span class="tag must">室内</span><b>宋井风景区</b>（赠票）。井亭 + 展陈，约 30 min，雨中更有意境</td></tr>
+      <tr><td class="time">17:45</td><td>回民宿换干衣；娃去<b>水上乐园 / 儿童俱乐部</b>放电，大人阳台喝茶歇脚</td></tr>
+      <tr><td class="time">18:30</td><td><span class="tag eat">晚餐</span>青澳湾海鲜大排档（室内堂食）：紫菜炒饭、白灼生蚝、海鲜砂锅粥</td></tr>
+      <tr><td class="time">20:00</td><td><span class="tag kid">看天</span>雨小 → 北回归线广场散步（10 min 即回）；雨大 → 民宿亲子活动，<b>20:30 哄娃睡</b></td></tr>
+    </table>
+    <div class="note rain-only"><b>雨天 Day 1 的调整逻辑：</b>Day 1 本来就没安排正式赶海（干潮 14:48 赶不上），所以雨天损失很小 —— 只是把「青澳湾沙滩 1.5h」换成「总兵府 + 宋井」这对<b>赠票室内组合</b>（晴天反而没时间去，算雨天补偿）。晚餐提前到 18:30，避开雨天排档高峰。</div>
+
+    <div class="mode-label rain">🌪️ 极端兜底：大桥封桥 / 台风黄色预警（Day 1 全天改留汕头市区）</div>
+    <table class="rain-only">
+      <tr><th>时间</th><th>安排</th></tr>
+      <tr><td class="time">12:22</td><td><span class="tag must">改道</span>汕头站取车后<b>不上岛</b>，电话改「南澳畅行」预约时段、民宿走免费取消</td></tr>
+      <tr><td class="time">13:00</td><td>提前联系 DIOTEL 看能否<b>提前入住</b>（原订 10/7），行李先寄存</td></tr>
+      <tr><td class="time">14:00</td><td><b>潮汕历史文化博览中心</b>（室内，免费需预约，约 2h）。娃有互动展区</td></tr>
+      <tr><td class="time">16:30</td><td><b>汕头市博物馆</b>或<b>万象城</b>室内逛街（二选一）</td></tr>
+      <tr><td class="time">18:00</td><td><span class="tag eat">晚餐</span><b>杏花吴记牛肉火锅</b>（室内，雨天火锅最合适）</td></tr>
+      <tr><td class="time">20:00</td><td>小公园骑楼夜景 —— <b>骑楼有连廊，小雨可逛</b>；回酒店休整</td></tr>
+      <tr><td class="time">次日</td><td>10/7 若天气转好，<b>改预约时段后当天上岛</b>；否则<b>整趟改为汕头城区深度游</b>（南澳段整体作废）</td></tr>
+    </table>
+    <div class="note warn rain-only"><b>封桥是唯一需要「整段换城市」的情况。</b>判断时间：10/5 晚看预警，10/6 早 6:00 再确认一次。只要封桥，南澳段整体作废，<b>优先保汕头城区体验</b>。</div>
+  </div>
+
+  <!-- Day 2 · 2天版 -->
+  <div class="card d2-only">
+    <h2><span class="dot"></span>Day 2 · 10/7 周三（八月廿七）｜环岛 + 赶海 + 连夜返程 <span style="color:#e0574b">（强度高）</span></h2>
+
+    <div class="mode-label sun">☀️ 晴天 · 完整时刻表</div>
+    <table class="sun-only">
+      <tr><th>时间</th><th>安排</th></tr>
+      <tr><td class="time">06:20</td><td><span class="tag kid">可选</span>青澳湾日出（10 月日出约 06:15，阳台就能看）</td></tr>
+      <tr><td class="time">08:00</td><td>早餐 + <b>退房装车</b>（行李全部上车，今晚直接走）</td></tr>
+      <tr><td class="time">09:00</td><td><span class="tag drive">环岛</span>西线：钱澳湾灯塔 → 三囱崖灯塔（红白双塔）</td></tr>
+      <tr><td class="time">10:30</td><td>北回归线标志塔「自然之门」打卡（5 min）</td></tr>
+      <tr><td class="time">11:30</td><td><span class="tag eat">午餐</span>后宅镇龙滨路美食街（提前吃，给赶海留时间）。<b>娃单独点白粥、紫菜炒饭、清蒸鱼</b></td></tr>
+      <tr><td class="time">12:45</td><td>回民宿（行李已在车上），换赶海装备，<b>用大堂卫生间/冲脚区</b></td></tr>
+      <tr><td class="time">13:40</td><td><span class="tag sea">赶海</span><b>竹栖肚湾 / 青澳湾滩涂</b>。干潮约 15:38，边退边捡，<b>16:00 前上岸</b>（天亮，从容）</td></tr>
+      <tr><td class="time">16:15</td><td><b>民宿冲澡换衣</b>（提前和前台打招呼保留一间钟点房 / 用公共淋浴）</td></tr>
+      <tr><td class="time">17:00</td><td><span class="tag drive">出岛</span>西线，出岛不再收费。<b>雨天/堵车按 90–120 min 预留</b></td></tr>
+      <tr><td class="time">18:40</td><td>到汕头市区，<span class="tag eat">晚餐</span><b>杏花吴记牛肉火锅</b>（这是本次唯一一顿城区正餐）</td></tr>
+      <tr><td class="time">19:50</td><td><span class="tag drive">还车</span>汕头站还车（提前加满油）</td></tr>
+      <tr><td class="time">20:30</td><td><span class="tag must">高铁</span>汕头 → 深圳北（约 2h20m）</td></tr>
+      <tr><td class="time">23:00</td><td>到深圳北 → 约 <b>24:00 到凤岗</b></td></tr>
+    </table>
+    <div class="note warn sun-only"><b>这一版必须提前说清的三个风险：</b>① <b>20:30 的高铁是 10/7 全国返程最高峰</b>，票必须在 9/22 抢票当天第一时间锁死，且<b>没有改签余地</b>；② 出岛到汕头站只有 2 小时 10 分钟缓冲，<b>10/7 出岛车流极大，一旦堵车就赶不上车</b>；③ 娃从 06:20 玩到 24:00 回家，<b>强度明显超标</b>。<br>如果这三件事你都接受不了，<b>请切回 3 天版</b>。</div>
+
+    <div class="mode-label rain">🌧️ 雨天 · 完整时刻表（赶海取消，全程室内 + 提前返程）</div>
+    <table class="rain-only">
+      <tr><th>时间</th><th>安排</th></tr>
+      <tr><td class="time">07:30</td><td><span class="tag kid">睡饱</span>日出取消，多睡 1 小时。雨天行程整体不赶</td></tr>
+      <tr><td class="time">08:30</td><td>早餐 + <b>退房装车</b></td></tr>
+      <tr><td class="time">09:30</td><td><span class="tag drive">环岛</span>西线车内观景：钱澳湾灯塔 → 三囱崖灯塔。<b>只停观景台、不下滩</b></td></tr>
+      <tr><td class="time">10:30</td><td><b>后宅镇龙滨路海鲜市场</b>（有顶棚）。买紫菜 / 虾干 / 鱿鱼干当手信，娃看鱼看螃蟹</td></tr>
+      <tr><td class="time">11:30</td><td><span class="tag eat">午餐</span>许大姐的菜 / 灿发渔家（室内）。海鲜砂锅粥 + 紫菜炒饭</td></tr>
+      <tr><td class="time">13:00</td><td><b>金银岛</b>（预约赠票，40 min）。妈祖庙 + 展馆室内为主</td></tr>
+      <tr><td class="time">14:15</td><td><span class="tag drive">出岛</span>雨天路滑，<b>车程按 120 min 预留</b>（比晴天多 30 min）</td></tr>
+      <tr><td class="time">16:30</td><td>到汕头市区，<b>潮汕历史文化博览中心</b>（室内，免费需预约，<b>16:30 停止入场 → 改去万象城</b>）</td></tr>
+      <tr><td class="time">17:00</td><td><b>万象城 / 合胜百货</b>室内逛街，娃有游乐区，<b>手信在这里一次买齐</b></td></tr>
+      <tr><td class="time">18:30</td><td><span class="tag eat">晚餐</span><b>潮汕牛肉火锅</b>：杏花吴记 / 八合里海记。<b>雨天火锅最优解</b>，提前叫网约车</td></tr>
+      <tr><td class="time">19:50</td><td><span class="tag drive">还车</span>汕头站还车。<b>雨天多留 20 min</b></td></tr>
+      <tr><td class="time">20:30</td><td><span class="tag must">高铁</span>汕头 → 深圳北。<b>雨天高铁可能晚点，留 30 min 心理余量</b></td></tr>
+      <tr><td class="time">23:00</td><td>到深圳北 → 约 <b>24:00 到凤岗</b></td></tr>
+    </table>
+    <div class="note warn rain-only"><b>2 天版 + 雨天 = 建议直接放弃上岛。</b>雨天赶海取消后，南澳只剩「车里看海 + 两个赠票景点 + 有顶棚的市场」，而代价是<b>傍晚顶着雨天开夜路出岛 + 撞返程最高峰</b>。<br>更聪明的做法：<b>Day 1 就不上岛，两天全部留给汕头城区</b>（潮博中心、市博物馆、小公园、牛肉火锅、生腌、夜粥），强度低、体验稳。</div>
+  </div>
+
+  <!-- Day 2 · 3天版 -->
+  <div class="card d3-only">
+    <h2><span class="dot"></span>Day 2 · 10/7 周三（八月廿七）｜环岛 + <b>赶海主场</b> + 傍晚进城区</h2>
+
+    <div class="mode-label sun">☀️ 晴天 · 完整时刻表</div>
+    <table class="sun-only">
+      <tr><th>时间</th><th>安排</th></tr>
+      <tr><td class="time">06:20</td><td><span class="tag kid">可选</span>青澳湾日出（10 月日出约 06:15，阳台就能看）</td></tr>
+      <tr><td class="time">08:00</td><td>早餐 + <b>退房装车</b>（今晚住汕头，行李全部上车）</td></tr>
+      <tr><td class="time">09:00</td><td><span class="tag kid">沙滩</span>青澳湾玩水挖沙（上午人少，避开正午暴晒）</td></tr>
+      <tr><td class="time">10:30</td><td>北回归线标志塔「自然之门」打卡（5 min）</td></tr>
+      <tr><td class="time">11:00</td><td><span class="tag drive">环岛</span>西线：钱澳湾灯塔 → 三囱崖灯塔（红白双塔）</td></tr>
+      <tr><td class="time">12:00</td><td><span class="tag eat">午餐</span>后宅镇龙滨路：许大姐的菜 / 灿发渔家。<b>大人生腌鱼生放开点；娃单独点白粥、紫菜炒饭、清蒸鱼</b></td></tr>
+      <tr><td class="time">13:15</td><td>回到青澳湾，<b>换赶海装备</b>（民宿大堂卫生间 / 冲脚区，提前和前台打招呼）</td></tr>
+      <tr><td class="time">13:40</td><td><span class="tag sea">赶海主场</span><b>竹栖肚湾 / 青澳湾滩涂</b>。干潮约 15:38，<b>全程天亮</b>（日落 18:12），<b>16:00 前上岸</b></td></tr>
+      <tr><td class="time">16:15</td><td><b>冲澡换衣</b>（订一间钟点房，或用民宿公共淋浴 —— 这一项出发前就要和民宿确认）</td></tr>
+      <tr><td class="time">17:00</td><td><span class="tag drive">出岛</span>西线经后宅，出岛不再收费</td></tr>
+      <tr><td class="time">18:30</td><td>到汕头市区，入住 <b>DIOTEL 皇后酒店</b>，稍作休整</td></tr>
+      <tr><td class="time">19:30</td><td><span class="tag eat">正餐</span><b>潮汕牛肉火锅</b>：杏花吴记 / 八合里海记 / 老牌海记</td></tr>
+      <tr><td class="time">21:00</td><td><span class="tag kid">夜逛</span>小公园骑楼街区 + 中山纪念亭夜景（全程平路，娃能走）</td></tr>
+      <tr><td class="time">21:40</td><td><span class="tag eat">夜宵</span>夜粥摊打包回酒店（娃睡了大人吃）</td></tr>
+    </table>
+    <div class="note sun-only"><b>这一天是整趟行程的核心，两个时间点是死的：</b><br>
+      ① <b>13:40 必须下滩</b> —— 赶海口诀「干潮前 2 小时到」，干潮推算 15:38，早到才能跟着退潮一路往外走；<br>
+      ② <b>16:00 必须上岸</b> —— 干潮后 1 小时内撤，这是铁律。<b>10/1 后务必用小程序复核真实干潮时刻，若实际干潮是 14:30，整个上午行程就要前移 1 小时。</b></div>
+
+    <div class="mode-label rain">🌧️ 雨天 · 完整时刻表（赶海取消，环岛改车内观景）</div>
+    <table class="rain-only">
+      <tr><th>时间</th><th>安排</th></tr>
+      <tr><td class="time">07:30</td><td><span class="tag kid">睡饱</span>日出取消，多睡 1 小时（雨天行程整体后移，不赶）</td></tr>
+      <tr><td class="time">08:30</td><td>早餐；收拾行李、<b>退房装车</b>（雨具、鞋套装门口）</td></tr>
+      <tr><td class="time">09:30</td><td><span class="tag drive">环岛</span>西线车内观景：钱澳湾灯塔 → 三囱崖灯塔。<b>只停观景台、不下滩</b></td></tr>
+      <tr><td class="time">10:30</td><td><b>后宅镇龙滨路海鲜市场</b>（有顶棚）。看海产、买紫菜 / 虾干 / 鱿鱼干，娃看鱼看螃蟹</td></tr>
+      <tr><td class="time">11:30</td><td><span class="tag eat">午餐</span>许大姐的菜 / 灿发渔家（室内）。<b>海鲜砂锅粥 + 紫菜炒饭</b></td></tr>
+      <tr><td class="time">13:00</td><td><b>金银岛</b>（预约赠票，40 min）。妈祖庙 + 展馆室内为主，是三张赠票里雨天最好用的</td></tr>
+      <tr><td class="time">14:15</td><td><span class="tag drive">出岛</span>雨天路滑，<b>车程按 120 min 预留</b>（比晴天多 30 min）</td></tr>
+      <tr><td class="time">16:15</td><td>到汕头入住 DIOTEL，娃<b>午睡 / 房间放电</b>（雨天没消耗，睡不睡都行）</td></tr>
+      <tr><td class="time">17:30</td><td><b>万象城 / 合胜百货</b>室内逛街。娃有游乐区，<b>顺手把伴手礼在这补齐</b></td></tr>
+      <tr><td class="time">18:45</td><td><span class="tag eat">正餐</span><b>潮汕牛肉火锅</b>：杏花吴记 / 八合里海记。<b>雨天火锅最优解</b>，提前叫网约车</td></tr>
+      <tr><td class="time">20:15</td><td>若雨停 → 小公园骑楼夜景补一段（<b>骑楼有连廊</b>）；雨大 → 直接回酒店</td></tr>
+      <tr><td class="time">21:00</td><td><span class="tag eat">夜宵</span>夜粥<b>叫外卖</b>回酒店</td></tr>
+    </table>
+    <div class="note rain-only"><b>雨天 Day 2 的关键取舍：</b>① 赶海主场整段取消，13:40–16:15 这段空白由<b>「金银岛赠票 + 后宅市场」</b>前移填上；② 出岛提前到 14:15，给雨天行车留 30 min 缓冲；③ 城区把「小公园户外漫步」换成<b>万象城室内</b>；④ <b>吃的一天没砍</b> —— 牛肉火锅、生腌、夜粥全是室内，这是雨天版最稳的部分。</div>
+  </div>
+
+  <!-- Day 2 · 4天版 -->
+  <div class="card d4-only">
+    <h2><span class="dot"></span>Day 2 · 10/7 周三（八月廿七）｜整天空闲：西线环岛 + 赶海主场</h2>
+
+    <div class="mode-label sun">☀️ 晴天 · 完整时刻表</div>
+    <table class="sun-only">
+      <tr><th>时间</th><th>安排</th></tr>
+      <tr><td class="time">06:20</td><td><span class="tag kid">可选</span>青澳湾日出（阳台就能看）</td></tr>
+      <tr><td class="time">08:00</td><td>早餐；上午自由活动 —— 沙滩玩水 / 房间补觉</td></tr>
+      <tr><td class="time">10:00</td><td><span class="tag drive">环岛</span>西线：钱澳湾灯塔 → 三囱崖灯塔 → 自然之门打卡</td></tr>
+      <tr><td class="time">11:30</td><td><span class="tag eat">午餐</span>后宅镇龙滨路美食街（提前吃，给赶海留时间）</td></tr>
+      <tr><td class="time">12:45</td><td>回民宿，<b>娃午睡 1 小时</b>，大人整理赶海装备</td></tr>
+      <tr><td class="time">13:40</td><td><span class="tag sea">赶海主场</span><b>竹栖肚湾 / 青澳湾滩涂</b>。干潮约 15:38，<b>全程天亮</b>，<b>16:00 前上岸</b></td></tr>
+      <tr><td class="time">16:15</td><td>回房冲洗换衣</td></tr>
+      <tr><td class="time">18:00</td><td><span class="tag eat">晚餐</span>青澳湾海鲜排档 + <b>渔获代加工</b>。紫菜炒饭、白灼生蚝、海鲜砂锅粥</td></tr>
+      <tr><td class="time">19:30</td><td>北回归线广场散步 / 阳台休整。<b>明天还要赶一次海，早睡</b></td></tr>
+      <tr><td class="time">20:30</td><td>哄娃睡</td></tr>
+    </table>
+
+    <div class="mode-label rain">🌧️ 雨天 · 完整时刻表（赶海取消，改赠票室内线）</div>
+    <table class="rain-only">
+      <tr><th>时间</th><th>安排</th></tr>
+      <tr><td class="time">07:30</td><td><span class="tag kid">睡饱</span>日出取消，自然醒。看窗外雨势，<b>大雨就推迟出门，行程有冗余</b></td></tr>
+      <tr><td class="time">08:30</td><td>早餐</td></tr>
+      <tr><td class="time">09:30</td><td><span class="tag drive">环岛</span>西线车内观景：钱澳湾灯塔 → 三囱崖灯塔。<b>车停即看、不下车淋雨</b></td></tr>
+      <tr><td class="time">11:00</td><td><b>后宅镇龙滨路海鲜市场</b>（有顶棚）。挑海产、买紫菜干货，娃看水箱里的鱼虾</td></tr>
+      <tr><td class="time">12:00</td><td><span class="tag eat">午餐</span>许大姐的菜 / 灿发渔家（室内）。海鲜砂锅粥 + 紫菜炒饭</td></tr>
+      <tr><td class="time">13:30</td><td><b>总兵府</b>（预约赠票，45 min）。展馆室内为主</td></tr>
+      <tr><td class="time">14:30</td><td><b>宋井</b>（赠票，30 min）。井亭 + 展陈</td></tr>
+      <tr><td class="time">15:30</td><td><span class="tag kid">回房</span>午睡 + <b>儿童俱乐部 / 水上乐园</b>（室内）。娃的雨天主场，可以耗一下午</td></tr>
+      <tr><td class="time">17:30</td><td>民宿大堂下午茶 / 亲子手工；大人喘口气</td></tr>
+      <tr><td class="time">18:30</td><td><span class="tag eat">晚餐</span>青澳湾或民宿餐厅：海鲜砂锅粥 + 白灼生蚝 + 紫菜炒饭。<b>取消渔获代加工</b></td></tr>
+      <tr><td class="time">20:00</td><td>回房休整；<b>20:30 哄娃睡</b></td></tr>
+    </table>
+    <div class="note rain-only"><b>4 天版雨天最大的优势是「有时间耗」：</b>不用像 2/3 天版那样硬塞景点 —— 上午车内环岛 + 市场，下午两张赠票，剩下时间全给娃在儿童俱乐部放电。<b>明后两天若雨停，随时可以把赶海补回来。</b></div>
+  </div>
+
+  <!-- Day 3 · 3天版 -->
+  <div class="card d3-only">
+    <h2><span class="dot"></span>Day 3 · 10/8 周四｜老城慢逛 → 错峰返程</h2>
+
+    <div class="mode-label sun">☀️ 晴天 · 完整时刻表</div>
+    <table class="sun-only">
+      <tr><th>时间</th><th>安排</th></tr>
+      <tr><td class="time">08:00</td><td><span class="tag eat">早餐</span>老城区肠粉 / 粿条汤</td></tr>
+      <tr><td class="time">09:00</td><td>老妈宫戏台 + 存心善堂 + 汕头旅社旧址（步行圈）</td></tr>
+      <tr><td class="time">10:15</td><td>开埠文化陈列馆（室内约 40 min，顺路补上昨晚没逛的部分）</td></tr>
+      <tr><td class="time">11:00</td><td>买手信：潮汕牛肉丸、绿豆饼、凤凰单丛（可真空打包）</td></tr>
+      <tr><td class="time">11:40</td><td><span class="tag eat">午餐</span>最后一顿：牛肉丸粿条 / 卤鹅饭</td></tr>
+      <tr><td class="time">12:40</td><td><span class="tag drive">还车</span>汕头站还车（提前加满油，岛上油价贵 ¥0.5–1/L）</td></tr>
+      <tr><td class="time">13:30</td><td><span class="tag must">高铁</span>汕头 → 深圳北（约 2h20m）。<b>假期后首日，车厢明显比 10/7 空</b></td></tr>
+      <tr><td class="time">16:00</td><td>到深圳北 → 约 <b>17:00 到凤岗</b></td></tr>
+    </table>
+    <div class="note gold sun-only"><b>这一天的隐藏福利：</b>10/8 已过假期，返程车厢空、到凤岗时间正常，<b>娃不用熬夜</b>。相比 2 天版 24:00 才到家，这 1 天假换来的体验差是实打实的。</div>
+
+    <div class="mode-label rain">🌧️ 雨天 · 完整时刻表（步行改打车串联，景点全换室内）</div>
+    <table class="rain-only">
+      <tr><th>时间</th><th>安排</th></tr>
+      <tr><td class="time">08:00</td><td><span class="tag eat">早餐</span>酒店附近肠粉 / 粿条汤。<b>叫网约车，别走</b>（5 min 车程）</td></tr>
+      <tr><td class="time">09:00</td><td><b>老妈宫戏台 + 存心善堂</b>（室内为主，骑楼连廊串联，淋不到多少雨）</td></tr>
+      <tr><td class="time">10:15</td><td><b>汕头市博物馆</b>（室内 1h）。<b>这是雨天替换「老城暴走」的主力</b></td></tr>
+      <tr><td class="time">11:20</td><td>打车回小公园买手信：牛肉丸（真空）、绿豆饼、凤凰单丛。<b>一次买齐，别分趟跑</b></td></tr>
+      <tr><td class="time">11:50</td><td><span class="tag eat">午餐</span>最后一顿：牛肉丸粿条 / 卤鹅饭（室内）</td></tr>
+      <tr><td class="time">12:40</td><td><span class="tag drive">还车</span>取车 → 汕头站还车。<b>雨天多留 20 min</b>，验车拍照别在雨里磨蹭</td></tr>
+      <tr><td class="time">13:30</td><td><span class="tag must">高铁</span>汕头 → 深圳北。<b>雨天高铁可能晚点，留 30 min 心理余量</b></td></tr>
+      <tr><td class="time">16:00</td><td>到深圳北 → 约 <b>17:00 到凤岗</b>（晚点则顺延）</td></tr>
+    </table>
+    <div class="note rain-only"><b>雨天 Day 3 的三处调整：</b>① 老城步行圈全改<b>网约车串联</b>（4 段约 ¥40–60，雨天这段钱值得花）；② 「汕头旅社旧址」这种纯户外拍照点砍掉，换<b>市博物馆室内 1h</b>；③ <b>手信建议提前一晚在万象城买齐</b> —— 雨天上午时间紧。<br>若采用<b>用车策略 B 方案</b>（10/7 已还车），今天全程网约车，时刻表不变。</div>
+  </div>
+
+  <!-- Day 3 · 4天版 -->
+  <div class="card d4-only">
+    <h2><span class="dot"></span>Day 3 · 10/8 周四（八月廿八）｜东线环岛 + 二赶海 → 傍晚进城区</h2>
+
+    <div class="mode-label sun">☀️ 晴天 · 完整时刻表</div>
+    <table class="sun-only">
+      <tr><th>时间</th><th>安排</th></tr>
+      <tr><td class="time">06:20</td><td><span class="tag kid">可选</span>青澳湾日出</td></tr>
+      <tr><td class="time">08:00</td><td>早餐 + <b>退房装车</b></td></tr>
+      <tr><td class="time">09:00</td><td><span class="tag drive">环岛东线</span>三囱崖灯塔 → 蛴仔澎风车场（观景台远眺，不必爬山）→ 走马埔村彩虹海</td></tr>
+      <tr><td class="time">11:00</td><td><span class="tag eat">午餐</span>后宅镇龙滨路（提前吃）</td></tr>
+      <tr><td class="time">12:15</td><td><span class="tag kid">午睡</span>回房（或车内）休息 1 小时 —— 今天赶海比昨天晚 1 小时</td></tr>
+      <tr><td class="time">14:30</td><td><span class="tag sea">二赶海</span>回竹栖肚湾。干潮约 16:28，<b>17:00 前上岸</b>（日落 18:12，撤场时还有约 70 min 天光）</td></tr>
+      <tr><td class="time">17:15</td><td><b>冲澡换衣</b>（钟点房 / 民宿公共淋浴）</td></tr>
+      <tr><td class="time">18:00</td><td><span class="tag drive">出岛</span>西线经后宅</td></tr>
+      <tr><td class="time">19:30</td><td>到汕头入住 <b>DIOTEL 皇后酒店</b></td></tr>
+      <tr><td class="time">20:00</td><td><span class="tag eat">正餐</span>粿条汤 + 蚝烙 + 肠粉；<b>大人的生腌、鱼生安排在这一顿</b></td></tr>
+      <tr><td class="time">21:20</td><td><span class="tag kid">夜逛</span>小公园骑楼 + 中山纪念亭夜景</td></tr>
+      <tr><td class="time">22:00</td><td><span class="tag eat">夜宵</span>夜粥外带回酒店</td></tr>
+    </table>
+    <div class="note warn sun-only"><b>二赶海的时间比昨天紧：</b>干潮推算 16:28，比 10/7 晚了 50 分钟，撤场时距日落只剩约 70 分钟。<b>若 10/1 复核后实际干潮晚于 17:00，这次就取消</b>，改成白天沙滩玩水 —— 带 4 岁娃不为第二次赶海冒险。</div>
+
+    <div class="mode-label rain">🌧️ 雨天 · 完整时刻表（二赶海取消，傍晚提前出岛）</div>
+    <table class="rain-only">
+      <tr><th>时间</th><th>安排</th></tr>
+      <tr><td class="time">07:30</td><td><span class="tag kid">睡饱</span>日出取消，自然醒</td></tr>
+      <tr><td class="time">08:30</td><td>早餐 + <b>退房装车</b></td></tr>
+      <tr><td class="time">09:30</td><td><span class="tag drive">环岛东线</span>三囱崖灯塔观景台 → 蛴仔澎风车场<b>远眺</b>。<b>全程车停即看、不下车淋雨</b></td></tr>
+      <tr><td class="time">10:30</td><td>走马埔村彩虹海 —— <b>车内看一眼就走</b>。雨天礁石区湿滑，绝对不下滩</td></tr>
+      <tr><td class="time">11:15</td><td><b>后宅镇龙滨路海鲜市场</b>（有顶棚），挑干货手信</td></tr>
+      <tr><td class="time">12:15</td><td><span class="tag eat">午餐</span>许大姐的菜 / 灿发渔家（室内）</td></tr>
+      <tr><td class="time">13:30</td><td><b>金银岛</b>（预约赠票，40 min）。妈祖庙 + 展馆室内为主</td></tr>
+      <tr><td class="time">14:45</td><td><span class="tag drive">出岛</span>雨天路滑，<b>车程按 120 min 预留</b></td></tr>
+      <tr><td class="time">16:45</td><td>到汕头，入住 DIOTEL，行李先放前台</td></tr>
+      <tr><td class="time">17:30</td><td><b>万象城 / 合胜百货</b>室内逛街，娃有游乐区，<b>手信在这补齐</b></td></tr>
+      <tr><td class="time">18:45</td><td><span class="tag eat">正餐</span>潮汕牛肉火锅（雨天最优解，提前叫网约车）</td></tr>
+      <tr><td class="time">20:15</td><td>若雨停 → 小公园骑楼夜景（<b>骑楼有连廊</b>）；雨大 → 回酒店</td></tr>
+      <tr><td class="time">21:00</td><td><span class="tag eat">夜宵</span>夜粥<b>叫外卖</b>回酒店</td></tr>
+    </table>
+    <div class="note rain-only"><b>雨天 Day 3 的关键取舍：</b>二赶海取消后，下午整段空出来 —— 与其在岛上耗，<b>不如提前到 14:45 出岛</b>，把城区时间做厚：万象城 1.5h + 牛肉火锅 + 夜粥。<b>吃的部分一天都没砍</b>，这是雨天版最稳的部分。</div>
+  </div>
+
+  <!-- Day 4 · 4天版 -->
+  <div class="card d4-only">
+    <h2><span class="dot"></span>Day 4 · 10/9 周五｜老城慢逛 → 错峰返程</h2>
+
+    <div class="mode-label sun">☀️ 晴天 · 完整时刻表</div>
+    <table class="sun-only">
+      <tr><th>时间</th><th>安排</th></tr>
+      <tr><td class="time">08:00</td><td><span class="tag eat">早餐</span>老城区肠粉 / 粿条汤（换一家，和昨天不同）</td></tr>
+      <tr><td class="time">09:00</td><td>老妈宫戏台 + 存心善堂 + 汕头旅社旧址（步行圈）</td></tr>
+      <tr><td class="time">10:15</td><td>开埠文化陈列馆（室内约 40 min）</td></tr>
+      <tr><td class="time">11:00</td><td>买手信：潮汕牛肉丸、绿豆饼、凤凰单丛（可真空打包）</td></tr>
+      <tr><td class="time">11:40</td><td><span class="tag eat">午餐</span>最后一顿：牛肉丸粿条 / 卤鹅饭</td></tr>
+      <tr><td class="time">12:40</td><td><span class="tag drive">还车</span>汕头站还车（提前加满油）</td></tr>
+      <tr><td class="time">13:30</td><td><span class="tag must">高铁</span>汕头 → 深圳北（约 2h20m）</td></tr>
+      <tr><td class="time">16:00</td><td>到深圳北 → 约 <b>17:00 到凤岗</b></td></tr>
+    </table>
+
+    <div class="mode-label rain">🌧️ 雨天 · 完整时刻表（步行改打车串联，景点全换室内）</div>
+    <table class="rain-only">
+      <tr><th>时间</th><th>安排</th></tr>
+      <tr><td class="time">08:00</td><td><span class="tag eat">早餐</span>网约车去老字号肠粉 / 粿条汤</td></tr>
+      <tr><td class="time">09:00</td><td><b>老妈宫戏台 + 存心善堂</b>（室内为主，骑楼连廊串联）</td></tr>
+      <tr><td class="time">10:15</td><td><b>汕头市博物馆</b>（室内 1h）。替换掉纯户外的「汕头旅社旧址」</td></tr>
+      <tr><td class="time">11:20</td><td>打车回小公园买手信，<b>一次买齐</b></td></tr>
+      <tr><td class="time">11:50</td><td><span class="tag eat">午餐</span>最后一顿：牛肉丸粿条 / 卤鹅饭（室内）</td></tr>
+      <tr><td class="time">12:40</td><td><span class="tag drive">还车</span>取车 → 汕头站还车。<b>雨天多留 20 min</b></td></tr>
+      <tr><td class="time">13:30</td><td><span class="tag must">高铁</span>汕头 → 深圳北。<b>雨天可能晚点，留 30 min 心理余量</b></td></tr>
+      <tr><td class="time">16:00</td><td>到深圳北 → 约 <b>17:00 到凤岗</b></td></tr>
+    </table>
+    <div class="note rain-only"><b>与 3 天版对比：</b>最后一天的安排完全一致 —— 汕头城区时间<b>一分没少</b>，只是整体后移一天。老城步行全改<b>网约车串联</b>（4 段约 ¥40–60）。<br>若采用<b>用车策略 B 方案</b>（10/8 已还车），今天全程网约车，时刻不变。</div>
+  </div>
+
+  <!-- 费用 -->
+  <div class="card">
+    <h2><span class="dot"></span>费用预估（国庆假期价，实时刷新档位）</h2>
+    <table class="d3-only">
+      <tr><th>项目</th><th>金额</th><th>说明</th></tr>
+      <tr><td>高铁往返</td><td>¥592</td><td>二等座 ¥148 × 2 大 × 2 程；娃 1.2m 以下免票</td></tr>
+      <tr><td>租车</td><td>¥900–1,200</td><td>10/6 12:30 → 10/8 12:30（2 天），舒适型约 ¥350/天 + 保险，含安全座椅</td></tr>
+      <tr><td>南澳大桥</td><td>¥96</td><td>入岛一次收双程，出岛不收；<b>国庆不免费</b></td></tr>
+      <tr><td>油费</td><td>¥150–220</td><td>约 150–220 km；上岛前加满油</td></tr>
+      <tr><td>住宿 2 晚</td><td>¥1,350–2,400</td><td>青澳湾 ¥700–1400 + 汕头 ¥650–1000（<b>10/7 晚可能回落</b>）</td></tr>
+      <tr><td>餐饮</td><td>¥900–1,300</td><td>海鲜一餐约 ¥300、牛肉火锅约 ¥250</td></tr>
+      <tr><td>门票 / 杂项</td><td>¥150–250</td><td>停车、赶海装备、伴手礼</td></tr>
+      <tr style="background:#fafbfc"><td><b>合计（3 天版）</b></td><td colspan="2"><b style="color:#e0574b;font-size:16px">¥4,150 – 6,060</b></td></tr>
+    </table>
+    <table class="d4-only">
+      <tr><th>项目</th><th>金额</th><th>说明</th></tr>
+      <tr><td>高铁往返</td><td>¥592</td><td>二等座 ¥148 × 2 大 × 2 程；娃 1.2m 以下免票</td></tr>
+      <tr><td>租车</td><td>¥1,350–1,800</td><td>10/6 12:30 → 10/9 12:30（3 天），含安全座椅</td></tr>
+      <tr><td>南澳大桥</td><td>¥96</td><td>入岛一次收双程</td></tr>
+      <tr><td>油费</td><td>¥180–260</td><td>环岛东线更远，约 200–260 km</td></tr>
+      <tr><td>住宿 3 晚</td><td>¥2,050–3,400</td><td>青澳湾 2 晚 ¥1400–2800 + 汕头 ¥650–1000</td></tr>
+      <tr><td>餐饮</td><td>¥1,200–1,700</td><td>多 1 天餐饮 + 1 顿海鲜</td></tr>
+      <tr><td>门票 / 杂项</td><td>¥200–320</td><td>停车、赶海装备、伴手礼</td></tr>
+      <tr style="background:#fafbfc"><td><b>合计（4 天版）</b></td><td colspan="2"><b style="color:#e0574b;font-size:16px">¥5,450 – 7,860</b></td></tr>
+    </table>
+    <table class="d2-only">
+      <tr><th>项目</th><th>金额</th><th>说明</th></tr>
+      <tr><td>高铁往返</td><td>¥592</td><td>二等座 ¥148 × 2 大 × 2 程</td></tr>
+      <tr><td>租车</td><td>¥550–750</td><td>10/6 12:30 → 10/7 19:50（约 1.5 天，注意超时计费）</td></tr>
+      <tr><td>南澳大桥</td><td>¥96</td><td>入岛一次收双程</td></tr>
+      <tr><td>油费</td><td>¥130–190</td><td>约 130–190 km</td></tr>
+      <tr><td>住宿 1 晚</td><td>¥700–1,400</td><td>青澳湾 1 晚（<b>10/6 是假期高峰，最贵的一晚</b>）</td></tr>
+      <tr><td>餐饮</td><td>¥650–900</td><td>仅 1 顿海鲜 + 1 顿牛肉火锅 + 路上简餐</td></tr>
+      <tr><td>门票 / 杂项</td><td>¥150–250</td><td>赶海装备、伴手礼</td></tr>
+      <tr style="background:#fafbfc"><td><b>合计（2 天版）</b></td><td colspan="2"><b style="color:#e0574b;font-size:16px">¥2,900 – 4,200</b></td></tr>
+    </table>
+    <div class="note"><b>钱主要花在哪：</b>住宿是第一大头（国庆上浮 30–80%，青澳湾一线海景房尤甚），其次是餐饮和租车。<b>能省的只有两块：</b>① <b>10/7 那晚盯降价</b>（假期最后一晚，多数房型开始回落）；② 用<b>酒店免费接送站</b>把城区打车费打到 0（DIOTEL 需提前 1 天预约）。其余都是刚性支出。</div>
+  </div>
+
+  <!-- 用车策略 -->
+  <div class="card">
+    <h2><span class="dot"></span>用车策略：城区租车 vs 打车</h2>
+    <div class="note">南澳岛段<b>必须租车</b>（环岛 60–70km、景点分散、带娃要放东西），这一点不变。真正的变量是：<b>出岛后是继续租车，还是还车改打车</b>。</div>
+
+    <h3 class="d3-only">3 天版</h3>
+    <table class="d3-only">
+      <tr><th>项目</th><th>A 全程租车</th><th>B 到汕头即还车 + 城区打车</th></tr>
+      <tr><td>租期</td><td>10/6 12:30 → 10/8 12:30（48h = 2 天）</td><td>10/6 12:30 → <b>10/7 19:00 前</b>（约 30.5h）</td></tr>
+      <tr><td>租金</td><td>¥700–800</td><td>¥700–800（<b>超 4h 即按 2 天算，等于白改</b>）</td></tr>
+      <tr><td>保险（不计免赔）</td><td>¥100–120</td><td>¥100–120</td></tr>
+      <tr><td>油费</td><td>¥120–160</td><td>¥95–125</td></tr>
+      <tr><td>市区停车</td><td>¥20–40（老城区位紧难找）</td><td>¥0</td></tr>
+      <tr><td>城区打车</td><td>¥0</td><td>¥40–80</td></tr>
+      <tr style="background:#fafbfc"><td><b>合计</b></td><td><b>¥940 – 1,120</b></td><td><b>¥935 – 1,125</b></td></tr>
+      <tr><td>差额</td><td>—</td><td><b style="color:#98a2ad">几乎持平，不值得折腾</b></td></tr>
+    </table>
+    <div class="note warn d3-only"><b>3 天版请直接选 A（全程租车）。</b>因为 10/7 傍晚 18:30 才到汕头，还车必然落在取车后 30 小时以上，<b>踩中「超 4 小时按整天收」的线，省不下来</b>；却要额外承受「拖着赶海湿行李去还车 → 再打车进城区」的麻烦。<br><b>唯一例外：</b>若一嗨按 24h 整天计费而非超时 4h 规则，可致电客服确认后再决定。</div>
+
+    <h3 class="d4-only">4 天版</h3>
+    <table class="d4-only">
+      <tr><th>项目</th><th>A 全程租车</th><th>B 出岛还车 + 城区打车</th></tr>
+      <tr><td>租期</td><td>10/6 12:30 → 10/9 12:30（72h = 3 天）</td><td>10/6 12:30 → 10/8 19:30（55h ≈ <b>踩线 3 天</b>）</td></tr>
+      <tr><td>租金</td><td>¥1,050–1,200</td><td>¥1,050–1,200（<b>同样踩 3 天线</b>）</td></tr>
+      <tr><td>保险（不计免赔）</td><td>¥150–180</td><td>¥150–180</td></tr>
+      <tr><td>油费</td><td>¥160–200</td><td>¥140–175</td></tr>
+      <tr><td>市区停车</td><td>¥40–80（停 2 晚）</td><td>¥0</td></tr>
+      <tr><td>城区打车</td><td>¥0</td><td>¥40–80（<b>用酒店免费接送站则近乎为 0</b>）</td></tr>
+      <tr style="background:#fafbfc"><td><b>合计</b></td><td><b>¥1,400 – 1,660</b></td><td><b style="color:#1d7048">¥1,370 – 1,555</b></td></tr>
+      <tr><td>差额</td><td>—</td><td><b style="color:#98a2ad">省 ¥30 – 105，意义不大</b></td></tr>
+    </table>
+    <div class="note d4-only"><b>4 天版同样建议选 A。</b>10/8 傍晚 19:30 才到汕头，还车时间落在第 3 个计费天内，省不下钱；反而城区还有 1.5 天要跑（杏花吴记在护堤路、潮博中心在龙湖区），<b>有车当移动基地更实用</b>。<br>唯一能省钱的动作：<b>订 DIOTEL 后提前 1 天预约免费汕头站送站</b>，把最后一程打车费打到 0。</div>
+
+    <h3 class="d2-only">2 天版</h3>
+    <table class="d2-only">
+      <tr><th>项目</th><th>A 全程租车（唯一现实选项）</th></tr>
+      <tr><td>租期</td><td>10/6 12:30 → 10/7 19:50（约 31h）</td></tr>
+      <tr><td>租金</td><td>¥700–800（<b>踩 2 天计费线</b>）</td></tr>
+      <tr><td>保险 + 油费</td><td>¥220–280</td></tr>
+      <tr><td>市区停车 / 打车</td><td>¥20–40（还车前有一段城区晚餐）</td></tr>
+      <tr style="background:#fafbfc"><td><b>合计</b></td><td><b>¥940 – 1,120</b></td></tr>
+    </table>
+    <div class="note warn d2-only"><b>2 天版没得选，必须全程租车</b> —— 傍晚 18:40 到汕头、19:50 还车，中间还要吃一顿火锅，<b>打车方案在此不成立</b>。</div>
+
+    <h3>结论与取舍</h3>
+    <div class="note"><b>钱之外，真正的差别是这三条：</b><br>
+      ① <b>老城区停车是痛点</b>——小公园片区路窄位紧，DIOTEL 未明确配停车场，旺季找车位可能 20 分钟。<br>
+      ② <b>没车会失去「移动基地」</b>——娃临时要休息/换衣、买完手信要放、下雨要躲，有车是刚需级的便利。<br>
+      ③ <b>汕头出租车很多不打表、要讲价</b>，建议全程用<b>网约车</b>（可预估价、比出租车便宜）。</div>
+    <div class="note gold"><b>结论：三个档位都选 A（全程租车），别在还车时间上冒险。</b><br>
+      原因是本次赶海在下午，<b>出岛时间被推到 17:00 之后</b>，到汕头还车必然落在下一个计费天内，<b>怎么算都会踩「超时按整天收」的线</b> —— 省不下钱，却要额外承受「拖着赶海湿行李去还车 → 再打车进城区」的麻烦。<br>
+      省钱转而去盯<b>房价（10/7 晚回落）</b>和<b>酒店免费接送站</b>这两项，收益更大也更稳。</div>
+  </div>
+
+  <!-- 打包 -->
+  <div class="card">
+    <h2><span class="dot"></span>带娃打包清单</h2>
+    <div class="cols">
+      <div>
+        <h3>玩水 / 赶海</h3>
+        <ul class="pack">
+          <li>泳衣（娃 2 套换洗）</li>
+          <li><b>防滑溯溪鞋</b>（赶海关键）</li>
+          <li>加厚手套 + 夹子 + 铲耙</li>
+          <li>水桶 / 网兜</li>
+          <li>头灯（白天场备用）</li>
+          <li>大浴巾 + 整套干衣</li>
+          <li>儿童防晒霜 + 遮阳帽</li>
+        </ul>
+      </div>
+      <div>
+        <h3>路上 &amp; 药品</h3>
+        <ul class="pack">
+          <li>儿童安全座椅（租车备注）</li>
+          <li>晕车贴 / 桔子皮</li>
+          <li>退烧药、蒙脱石散、创可贴</li>
+          <li>肠胃药（吃生腌备用）</li>
+          <li>驱蚊液 + 无比滴</li>
+          <li>娃的枕巾/小被（认床）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="note"><b>10 月专属加项：</b><b>娃的薄外套 / 防风衣 ×2</b>（10 月南澳早晚 23℃ 左右，海风一吹体感更凉）、<b>长裤 1 条</b>（天气转凉，多带一件）、<b>保温水壶</b>。白天仍是短袖 + 防晒，<b>早晚加一层</b>。</div>
+    <div class="note rain-only"><b>🌧️ 雨天额外加这几样（切到雨天时生效）：</b><br>
+      · <b>儿童雨衣（非雨伞）</b> —— 娃要腾出手，雨伞不现实，备 2 件换洗<br>
+      · <b>成人雨衣 / 折叠伞</b> ×2 · <b>防水鞋套</b> ×3<br>
+      · <b>备用袜子 3 双 + 备用鞋 1 双</b>（湿了立刻换，娃最容易感冒）<br>
+      · <b>手机 / 证件防水袋</b> · <b>湿衣收纳袋</b><br>
+      · <b>娃的室内玩具 / 绘本</b> —— 雨天在民宿、酒店耗的时间比预想多<br>
+      · <b>退热贴 + 小儿感冒药</b>（雨天降温易着凉）</div>
+    <div class="note warn"><b>安全红线：</b>雨天额外一条：<b>不上礁石、不赶海、不在非划定浴场下水</b>；桥面 / 环岛公路雨天降速 20%。<br>生腌、鱼生只给大人，<b>绝不给 4 岁娃尝</b>；海鲜不配冰饮给娃。赶海遵循「<b>干潮前 2 小时到、干潮后 1 小时内撤</b>」，时刻留意身后海水。青澳湾只在划定浴场下水，18:00 后浴场关闭。<br><b>10 月南海台风仍活跃</b>，大桥遇 10 级风即封桥，10/5 晚起每天看一次预警。</div>
+  </div>
+
+  <footer>核实于 2026-09-22 ｜ 假期安排引自国办发明电〔2025〕7 号 ｜ 潮汐为农历推算值，10/1 后须用小程序复核 ｜ 车次/房价/预约政策以官方实时为准</footer>
+</div>
+
+<script>
+function setMode(m){
+  document.body.setAttribute('data-mode', m);
+  var b=document.querySelectorAll('.switch button[data-mode]');
+  for(var i=0;i<b.length;i++){ b[i].className = (b[i].getAttribute('data-mode')===m)?'on':''; }
+  tip();
+}
+function setDays(d){
+  document.body.setAttribute('data-days', d);
+  var b=document.querySelectorAll('.switch button[data-days]');
+  for(var i=0;i<b.length;i++){ b[i].className = (b[i].getAttribute('data-days')===d)?'on':''; }
+  var s=document.getElementById('subLine'), c=document.getElementById('leaveChip');
+  if(d==='2'){ s.innerHTML='2026.10.06 周二 — 10.07 周三（2 天）｜ 东莞凤岗出发 ｜ 两大一小（4岁11个月）'; c.innerHTML='不请假 · 强度高'; }
+  if(d==='3'){ s.innerHTML='2026.10.06 周二 — 10.08 周四（3 天）｜ 东莞凤岗出发 ｜ 两大一小（4岁11个月）'; c.innerHTML='需请 1 天假'; }
+  if(d==='4'){ s.innerHTML='2026.10.06 周二 — 10.09 周五（4 天）｜ 东莞凤岗出发 ｜ 两大一小（4岁11个月）'; c.innerHTML='需请 2 天假'; }
+  tip();
+}
+function tip(){
+  var m=document.body.getAttribute('data-mode'), d=document.body.getAttribute('data-days');
+  var dm = (d==='2') ? '2 天版（不请假）'
+         : (d==='3') ? '3 天版（请 1 天）' : '4 天版（请 2 天）';
+  var mm = (m==='sun') ? '晴天' : '雨天';
+  var extra = (m==='rain')
+    ? ' 已切换为雨天完整时刻表：赶海全取消，岛上走「总兵府/宋井/金银岛赠票 + 后宅市场 + 民宿室内」线，城区走「潮博中心/市博物馆/万象城」线。'
+    : ' 本次干潮落在下午（10/7 ≈ 15:38），全程天亮赶海，是这版最大的优势；10/1 后务必复核真实潮时。';
+  document.getElementById('modeTip').innerHTML = '当前：<b>'+dm+' + '+mm+'方案</b>。'+extra;
+}
+</script>
+</body>
+</html>
