@@ -162,6 +162,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);padding:20px 0 10px}
       <li><a href="#s0">结论速览</a></li>
       <li><a href="#s1">政策参数</a></li>
       <li><a href="#s2">房源月供</a></li>
+      <li><a href="#s2b">还款方式</a></li>
       <li><a href="#s3">学位对比</a></li>
       <li><a href="#s4">通勤规划</a></li>
       <li><a href="#s5">涨跌测算</a></li>
@@ -242,7 +243,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);padding:20px 0 10px}
 <section id="s2">
   <div class="card">
     <h2>二、五套房源月供（首付 100 万 / 30 年 / 公积金额度 273 万）</h2>
-    <p style="font-size:13px;color:var(--muted);margin-bottom:8px">额度已按「首套 + 初婚初育」上浮 110% 修正为 273 万（原按 208 万计算有误）。修正后名居广场 89㎡ 与阳光玫瑰园 48㎡ 均可做到<b>纯公积金</b>，月供分别下降 53 元与 101 元。</p>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:8px">额度已按「首套 + 初婚初育」上浮 110% 修正为 273 万（原按 208 万计算有误）。修正后名居广场 89㎡ 与阳光玫瑰园 48㎡ 均可做到<b>纯公积金</b>，月供分别下降 53 元与 101 元。以上均按<b>等额本息</b>计算，等额本金的差异见第三章。</p>
     <div class="tbox">
       <table>
         <thead>
@@ -295,10 +296,99 @@ footer{text-align:center;font-size:12px;color:var(--muted);padding:20px 0 10px}
   </div>
 </section>
 
+<!-- 还款方式 -->
+<section id="s2b">
+  <div class="card">
+    <h2>三、还款方式：等额本息 vs 等额本金</h2>
+    <p>上面所有月供均按<b>等额本息</b>（每月固定）计算。另一种常见方式是<b>等额本金</b>：每月归还固定本金，利息逐月递减，因此月供逐月下降。两者总利息不同，前期现金流压力也不同。</p>
+
+    <h3>五套房源两种方式对比（首付 100 万 / 30 年）</h3>
+    <div class="tbox">
+      <table>
+        <thead>
+          <tr><th>房源</th><th class="num">贷款</th><th class="num">本息月供</th><th class="num">本金首月</th><th class="num">本金末月</th><th class="num">月递减</th><th class="num">本息总息</th><th class="num">本金总息</th><th class="num">省息</th><th class="num">首月多付</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>龙城华府 100㎡</b></td><td class="num">200 万</td><td class="num g"><b>8,007</b></td>
+            <td class="num">9,889</td><td class="num">5,568</td><td class="num">12.0</td>
+            <td class="num">88.2 万</td><td class="num g">78.2 万</td><td class="num g"><b>10.0 万</b></td><td class="num r">+1,882</td>
+          </tr>
+          <tr>
+            <td>龙城华府 120㎡</td><td class="num">280 万</td><td class="num">11,226</td>
+            <td class="num">13,871</td><td class="num">7,795</td><td class="num">16.9</td>
+            <td class="num">124.1 万</td><td class="num">110.0 万</td><td class="num g">14.2 万</td><td class="num r">+2,644</td>
+          </tr>
+          <tr>
+            <td><b>名居广场 89㎡</b></td><td class="num">230 万</td><td class="num">9,208</td>
+            <td class="num">11,372</td><td class="num">6,403</td><td class="num">13.8</td>
+            <td class="num">101.5 万</td><td class="num">89.9 万</td><td class="num g">11.5 万</td><td class="num r">+2,164</td>
+          </tr>
+          <tr>
+            <td>阳光玫瑰园 48㎡</td><td class="num">250 万</td><td class="num">10,008</td>
+            <td class="num">12,361</td><td class="num">6,959</td><td class="num">15.0</td>
+            <td class="num">110.3 万</td><td class="num">97.8 万</td><td class="num g">12.5 万</td><td class="num r">+2,353</td>
+          </tr>
+          <tr>
+            <td>阳光玫瑰园 66㎡</td><td class="num">395 万</td><td class="num">16,106</td>
+            <td class="num">19,988</td><td class="num">10,997</td><td class="num">25.0</td>
+            <td class="num">184.8 万</td><td class="num">162.7 万</td><td class="num g">22.1 万</td><td class="num r">+3,882</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>月供走势（以龙城华府 100㎡、贷 200 万纯公积金为例）</h3>
+    <div class="tbox">
+      <table>
+        <thead><tr><th class="num">年份</th><th class="num">等额本息</th><th class="num">等额本金（该年首月）</th><th class="num">差额</th></tr></thead>
+        <tbody>
+          <tr><td class="num">第 1 年</td><td class="num">8,007</td><td class="num">9,889</td><td class="num r">+1,882</td></tr>
+          <tr><td class="num">第 5 年</td><td class="num">8,007</td><td class="num">9,311</td><td class="num r">+1,304</td></tr>
+          <tr><td class="num">第 10 年</td><td class="num">8,007</td><td class="num">8,589</td><td class="num r">+582</td></tr>
+          <tr><td class="num">第 15 年</td><td class="num">8,007</td><td class="num">7,867</td><td class="num g">−140</td></tr>
+          <tr><td class="num">第 20 年</td><td class="num">8,007</td><td class="num">7,144</td><td class="num g">−862</td></tr>
+          <tr><td class="num">第 30 年</td><td class="num">8,007</td><td class="num">5,700</td><td class="num g">−2,307</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--muted)">两种方式的月供在第 <b>14~15 年</b>附近交叉，此后等额本金更低。</p>
+
+    <h3>累计已付利息对比（龙城华府 100㎡）</h3>
+    <div class="tbox">
+      <table>
+        <thead><tr><th class="num">时点</th><th class="num">等额本息累计息</th><th class="num">等额本金累计息</th><th class="num">差</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1 年末</td><td class="num">5.1 万</td><td class="num">5.1 万</td><td class="num">+0.0 万</td></tr>
+          <tr><td class="num">5 年末</td><td class="num">24.5 万</td><td class="num">23.9 万</td><td class="num">+0.7 万</td></tr>
+          <tr><td class="num">10 年末</td><td class="num">45.8 万</td><td class="num">43.4 万</td><td class="num">+2.4 万</td></tr>
+          <tr><td class="num">20 年末</td><td class="num">76.7 万</td><td class="num">69.5 万</td><td class="num">+7.2 万</td></tr>
+          <tr><td class="num"><b>30 年全期</b></td><td class="num">88.2 万</td><td class="num">78.2 万</td><td class="num g"><b>+10.0 万</b></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>若第 10 年末提前一次性还清</h3>
+    <div class="grid grid-2">
+      <div class="kv"><div class="k">等额本息</div><div class="v">149.7 万</div><div class="n">剩余本金（已付利息 45.8 万）</div></div>
+      <div class="kv"><div class="k">等额本金</div><div class="v g">133.3 万</div><div class="n">剩余本金（已付利息 43.4 万）</div></div>
+    </div>
+    <p style="margin-top:10px;font-size:13.5px">等额本金在第 10 年末<b>少欠本金 16.4 万、少付利息 2.4 万</b>——如果确定会在 5~10 年内提前还款，等额本金的优势会被放大。</p>
+
+    <div class="info">
+      <b>建议：默认选等额本息。</b>理由是公积金利率仅 2.6%，是你能拿到的最便宜的钱，等额本金 30 年省下的 10 万利息摊到每年仅 3,300 元，却要承受前 10 年每月多付 582~1,882 元的压力。<b>保留现金流比省这笔利息更重要</b>——尤其在有孩子、要留 6~12 个月应急金的情况下。<br><br>
+      <b>改选等额本金的条件：</b>①家庭收入较高且预期稳定增长，前期多付 1,882 元/月无压力；②明确计划 5~10 年内提前还款（此时优势扩大到 2.4 万 + 少欠本金 16.4 万）；③不考虑通胀因素，希望总支出最小。
+    </div>
+    <div class="note">
+      <b>两点提醒：</b>①公积金贷款是否支持等额本金、以及组合贷中商贷部分能否同步选择，需向贷款银行与公积金中心确认；②通胀角度看，30 年后的 5,568 元实际购买力远低于今天的 9,889 元，因此"等额本息后期负担重"的说法在长期通胀环境下并不成立。
+    </div>
+  </div>
+</section>
+
 <!-- 学位 -->
 <section id="s3">
   <div class="card">
-    <h2>三、学位对比（2026 中考数据）</h2>
+    <h2>四、学位对比（2026 中考数据）</h2>
     <div class="tbox">
       <table>
         <thead><tr><th>指标</th><th class="num">龙岗外国语本部</th><th class="num">深大附中初中部</th></tr></thead>
@@ -330,7 +420,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);padding:20px 0 10px}
 <!-- 通勤 -->
 <section id="s4">
   <div class="card">
-    <h2>四、通勤与深惠城际规划</h2>
+    <h2>五、通勤与深惠城际规划</h2>
     <div class="tbox">
       <table>
         <thead><tr><th>出发地</th><th class="num">→ 前海湾</th><th class="num">→ 创益科兴（科技园）</th></tr></thead>
@@ -365,12 +455,12 @@ footer{text-align:center;font-size:12px;color:var(--muted);padding:20px 0 10px}
 <!-- 涨跌 -->
 <section id="s5">
   <div class="card">
-    <h2>五、涨跌敏感性测算</h2>
+    <h2>六、涨跌敏感性测算</h2>
     <p><b>口径说明（本章只对比方案 1 与方案 3，均为「买后自住、不再租房、房子不出租」）：</b></p>
     <ul class="list">
       <li><b>方案 1</b>：2027 年买入龙城华府 300 万（首付 100 万、贷 200 万纯公积金、月供 8,007），自住 30 年，无房租</li>
       <li><b>方案 3</b>：先租南山 5,000/月 共 5 年，2031 年末买入阳光玫瑰园 48㎡ 350 万（首付 100 万、贷 250 万），此后自住</li>
-      <li>方案 2 不参与本章对比——它在所有房价情景下净成本均为最高（详见第六章），直接排除</li>
+      <li>方案 2 不参与本章对比——它在所有房价情景下净成本均为最高（详见第七章），直接排除</li>
       <li>观察窗为 30 年（2027→2056）；方案 3 的买房时点为第 5 年末（2031 年）</li>
     </ul>
     <p style="margin-top:8px">净成本 = 30 年总现金流出（首付 + 月供 + 房租）− 期末净资产（房产价值 − 剩余贷款）。</p>
@@ -425,7 +515,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);padding:20px 0 10px}
 <!-- 方案对比 -->
 <section id="s6">
   <div class="card">
-    <h2>六、三方案优缺点</h2>
+    <h2>七、三方案优缺点</h2>
 
     <h3>方案 1 · 2027 买龙岗（龙城华府 / 名居广场）</h3>
     <ul class="list">
@@ -466,7 +556,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);padding:20px 0 10px}
 <!-- 公积金 -->
 <section id="s7">
   <div class="card">
-    <h2>七、公积金额度与首付档位</h2>
+    <h2>八、公积金额度与首付档位</h2>
     <h3>「被挤出公积金额度」是什么意思</h3>
     <p>组合贷规则：贷款先灌满公积金池（你上限 <b>273 万</b>），溢出的部分自动落到商贷，利率从 <b>2.6% 跳到 3.05%</b>。三条天花板取最小值：政策上限 273 万 / 账户余额 × 16 倍（余额需 ≥ 17.06 万）/ 月供 ≤ 缴存基数之和 × 50%（基数合计需 ≥ 21,859 元/月）。</p>
 
@@ -506,7 +596,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);padding:20px 0 10px}
 <!-- 建议 -->
 <section id="s8">
   <div class="card">
-    <h2>八、最终建议</h2>
+    <h2>九、最终建议</h2>
     <div class="hero" style="margin-bottom:14px">
       <div class="big">首选：龙城华府 100㎡ 3+1房 · 300 万 · 月供 8,007 元</div>
       <p>与名居广场<b>初中同为龙岗外国语本部</b>，学位打平的前提下，单价低 19%、面积大 11㎡、总价省 30 万、月供省 1,254 元/月，是全场性价比最高。</p>
@@ -548,7 +638,7 @@ footer{text-align:center;font-size:12px;color:var(--muted);padding:20px 0 10px}
 <!-- 待核实 -->
 <section id="s9">
   <div class="card">
-    <h2>九、签约前必须核实的四件事</h2>
+    <h2>十、签约前必须核实的四件事</h2>
     <ul class="list">
       <li class="warn"><b>龙外本部积分：</b>2026 年初一录取积分 103.6 分，需提前约 7 年购房规划。请确认你的积分是按哪一年入学的购房年限计算——购房时长是积分核心变量，差一年就可能滑档至致美学校（龙外集团内部差距极大，本部 13.5% vs 云和 2.5%）。</li>
       <li class="warn"><b>龙城华府折价 15~25% 的原因：</b>同小区 97㎡ 挂牌 310 万（3.19 万/㎡）、121㎡ 395 万（3.25 万/㎡）。必须问清楼层、朝向、是否临路、税费、有无抵押或纠纷。是真笋盘就果断拿下，有硬伤就避开。</li>
